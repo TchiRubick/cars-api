@@ -18,7 +18,7 @@ class CommentController extends AbstractController
         $contents = [];
         
         foreach ($comments as $comment) {
-            $contents[] = ['comment' => $comment->getContent(), 'user' => $comment->getUser()->getUsername()];
+            $contents[] = ['comment' => $comment->getContent(), 'user' => $comment->getUser()->getUsername(), 'id' => $comment->getId()];
         }
 
         return new JsonResponse($contents);
