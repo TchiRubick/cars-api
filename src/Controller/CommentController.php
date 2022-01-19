@@ -16,13 +16,11 @@ class CommentController extends AbstractController
     {
         $comments = $commentRepository->findBy(['car' => $id]);
         $contents = [];
-        $users = [];
         
         foreach ($comments as $comment) {
-            $contents[] = $comment->getContent();
-            $users[] = $comment->getUser()->getUsername();
+            $contents[] = ['comment' => $comment->getContent(), 'user' => $comment->getUser()->getUsername()];
         }
 
-        return new JsonResponse(['comments' => $contents, 'users'=> $users]);
+        return new JsonResponse($contents);
     }
 }
