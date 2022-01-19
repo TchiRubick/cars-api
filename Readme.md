@@ -4,6 +4,8 @@ This is a sprint style project.
 The objectiv is to finish a maximum of feature in a short time.  
 This is what i have done in 2 hours.
 
+It's delivered with 3 docker container, php-fpm container, nginx container and the database container.
+
 ## Done
 
 - Docker configuration

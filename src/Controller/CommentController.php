@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\CommentRepository;
-use App\Repository\CarRepository;
 
 class CommentController extends AbstractController
 {
@@ -17,13 +16,13 @@ class CommentController extends AbstractController
     {
         $comments = $commentRepository->findBy(['car' => $id]);
         $contents = [];
+        $users = [];
         
         foreach ($comments as $comment) {
-            $content[] = $comment->getContent();
+            $contents[] = $comment->getContent();
+            $users[] = $comment->getUser()->getUsername();
         }
 
-        return new JsonResponse(
-            ['comments' => $contents,],
-        );
+        return new JsonResponse(['comments' => $contents, 'users'=> $users]);
     }
 }
